@@ -1,4 +1,3 @@
-```puppet
 # exemplo_Leo.pp
 # Este manifesto demonstra a criação de uma estrutura básica de pastas e arquivos no sistema.
 
