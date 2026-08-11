@@ -6,7 +6,7 @@ Este repositório contém um guia passo a passo para instalação, configuraçã
 
 ## 1. Instalação do Puppet
 
-O Puppet geralmente funciona num modelo Servidor/Agente (Master/Agent), mas para fins práticos, testes e para rodar os arquivos de exemplo deste repositório, utilizaremos a execução local com o **Puppet Agent**. 
+O Puppet geralmente funciona num modelo Servidor/Agente (Master/Agent), mas para fins práticos, testes e para rodar os arquivos de exemplo deste repositório, utilizaremos a execução local com o **Puppet Agent**.
 
 Os comandos abaixo foram testados em distribuições baseadas em **Debian/Ubuntu**.
 
@@ -55,3 +55,53 @@ puppet --version
 Se o terminal retornar a versão (ex: `8.x.x`), o ambiente está pronto para uso!
 
 A partir daqui, os códigos do Puppet (chamados de **Manifests**, com extensão `.pp`) já podem ser executados localmente utilizando o comando base `puppet apply <nome-do-arquivo.pp>`.
+
+# Principais comandos do Puppet
+
+Em ordem de execução dos comandos: primeiro valida, depois aplica.
+
+## Puppet parser validate
+
+Verifica se um manifest possui erros de sintaxe.
+
+```bash
+puppet parser validate site.pp
+
+```
+Se houver um erro de sintaxe, o Puppet informa o problema.
+
+## Puppet apply --noop
+
+Executa o manifest em modo de simulação, mostrando o que seria alterado sem realmente aplicar as mudanças.
+
+```bash
+puppet apply --noop site.pp
+
+```
+Essa flag --noop diz ao Puppet para não fazer as alterações, apenas mostrar o que seria alterado.
+
+## Puppet resource
+
+Permite inspecionar o estado atual em tempo real dos recursos do sistema, como usuários, grupos, pacotes e serviços.
+Por exemplo: Vou inspecionar o recurso serviço (service).
+
+```bash
+puppet resource service nginx
+
+```
+
+A saída do Resource será na linguagem natural do Puppet.
+
+```bash
+service { 'nginx':
+  ensure => 'stopped',
+  enable => 'false',
+}
+
+```
+
+Essa saída mostra que o serviço existe, mas está parado e desabilitado.
+Mais precisamente:
+o ensure => 'stopped' → indica que o serviço não deve estar rodando.
+
+enable => 'false' → indica que o serviço não deve iniciar automaticamente no boot.
