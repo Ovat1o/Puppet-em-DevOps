@@ -105,3 +105,75 @@ Mais precisamente:
 o ensure => 'stopped' → indica que o serviço não deve estar rodando.
 
 enable => 'false' → indica que o serviço não deve iniciar automaticamente no boot.
+
+### Principais tipos de recursos do Puppet
+
+Aqui são os elementos que o Puppet gerencia.
+
+## 📦 Package
+Gerencia pacotes de software (instalação, remoção, atualização).
+
+```bash
+package { 'nginx':
+  ensure => installed,
+}
+
+```
+
+## 🗂️ File
+Controla arquivos e diretórios (conteúdo, permissões, dono).
+
+```bash
+file { '/etc/motd':
+  ensure  => file,
+  content => "Bem-vindo ao servidor!\n",
+}
+
+```
+
+## 👤 User
+Gerencia usuários do sistema.
+
+```bash
+user { 'joao':
+  ensure     => present,
+  managehome => true,
+  shell      => '/bin/bash',
+}
+
+```
+
+## 👥 Group
+Gerencia grupos de usuários.
+
+```bash
+group { 'devs':
+  ensure => present,
+}
+
+```
+
+## ⚙️ Service
+Controla serviços (iniciar, parar, habilitar no boot).
+
+```bash
+service { 'nginx':
+  ensure => running,
+  enable => true,
+}
+
+```
+
+## ⏰ Cron
+Gerencia tarefas agendadas no cron.
+
+```bash
+cron { 'backup':
+  ensure  => present,
+  command => '/usr/local/bin/backup.sh',
+  user    => 'root',
+  minute  => '0',
+  hour    => '2',
+}
+
+```
