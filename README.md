@@ -55,3 +55,4 @@ puppet --version
 Se o terminal retornar a versão (ex: `8.x.x`), o ambiente está pronto para uso!
 
 A partir daqui, os códigos do Puppet (chamados de **Manifests**, com extensão `.pp`) já podem ser executados localmente utilizando o comando base `puppet apply <nome-do-arquivo.pp>`.
+
