@@ -25,3 +25,6 @@ file { '/var/www/html/index.html':
 user { 'devops':
   ensure => present,
 }
+
+# 5. Portanto, esse manifesto é um exemplo simples de automação de configuração de servidores com Puppet: 
+# Em vez de configurar tudo manualmente, você descreve o estado desejado e o Puppet aplica essa configuração.
